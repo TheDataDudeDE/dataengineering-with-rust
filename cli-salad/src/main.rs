@@ -6,12 +6,12 @@ use cli_salad::create_fruit_salad;
 
 struct Opts {
     #[clap(short, long, default_value = "3")]
-    num_fruits: usize,
+    number: usize,
 }
 
 fn main() {
     let opts: Opts = Opts::parse();
-    let fruits = create_fruit_salad(opts.num_fruits);
+    let num_fruits = opts.number;
     println!(
         "Created a fruit salad with {} fruits: {:?}",
         num_fruits,
