@@ -6,8 +6,8 @@ use cli_custom_fruit_salad::create_fruit_salad;
 
 struct Opts {
     #[clap(short, long)]
-    csvfile: Option<String>,
     fruits: Option<String>,
+    csvfile: Option<String>,
 }
 
 //Function that converts a csv-file to a vector of strings
