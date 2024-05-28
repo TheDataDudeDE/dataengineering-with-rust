@@ -1,3 +1,5 @@
+use std::collections::BTreeMap;
+
 
 //Function to remove a fruit from a fruit list
 fn remove_fruit<'a>(fruit_list: Vec<&'a str>, fruit_to_remove: &'a str) -> Vec<&'a str> {
@@ -10,10 +12,18 @@ fn sort_fruit<'a>(fruit_list: Vec<&'a str>) -> Vec<&'a str> {
     fruits
 }
 
+fn count_occurance(fruit_list: Vec<&str>) -> BTreeMap<&str, usize> {
+    let mut fruit_counts = BTreeMap::new();
+    for fruit in fruit_list {
+        *fruit_counts.entry(fruit).or_insert(0) += 1;
+    }
+    fruit_counts
+}
+
 
 
 fn main() {
-    let mut fruit_list = vec!["apple", "banana", "pear", "kiwi", "orange"];
+    let mut fruit_list = vec!["apple","apple", "banana", "pear", "kiwi", "orange"];
     println!("Fruit list: {:?}", fruit_list);
     fruit_list.push("grape");
     println!("Fruit list after push: {:?}", fruit_list);
@@ -29,5 +39,6 @@ fn main() {
     let fruits = sort_fruit(fruits);
     println!("Fruit list after removing and sorting {:?}", fruits);
 
-
+    let counts = count_occurance(fruits); 
+    println!("Occurances {:?}", counts)     
 }
