@@ -5,18 +5,18 @@
 */
 
 
-use std::sync::{Mutex, Arc};
+use std::sync::{RwLock, Arc};
 use std::thread;
 
 fn main() {
-    let data = Arc::new(Mutex::new(vec![1, 2, 3]));
+    let data = Arc::new(RwLock::new(vec![1, 2, 3]));
 
     let mut handles = vec![];
 
     for i in 0..3 {
         let data = data.clone();
         let handle = thread::spawn(move || {
-            let mut data = data.lock().unwrap();
+            let mut data = data.write().unwrap();
             data[i] += 1;
         });
         handles.push(handle)
